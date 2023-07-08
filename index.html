@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+
+    <script src="./components/rotation.js"></script>
+
+  </head>
+
+  <body>
+    
+    <a-scene background="color:#10145F">
+
+      <a-entity id="look" look-controls camera position="0 2 20"></a-entity>
+
+      <!--Asset Management-->
+      <a-assets timeout="10000">        
+        <a-asset-item
+          id="underwater_terrain"
+          src="./models/underwater_terrain/scene.gltf"
+        ></a-asset-item>
+
+        <a-asset-item
+          id="diver_model"
+          src="./models/diver/scene.gltf"
+        ></a-asset-item>
+
+        <a-asset-item
+        id="bubbles_model"
+        src="./models/bubbles/scene.gltf"
+        ></a-asset-item>
+        
+      </a-assets>
+
+      <!-- Terrain  -->
+      <a-entity
+        id="terrain"
+        gltf-model="#underwater_terrain"
+        position="0 -40 -350"
+        scale="60 60 60"
+        animation="property: position; to: 0 -40 1000; easing:linear; loop: true; dur: 190000"
+        terrain-rotation-reader
+        
+      >
+      </a-entity>
+
+      <!-- Diver -->
+      <a-entity
+        id="diver"
+        gltf-model="#diver_model"
+        position="2 -6 15"
+        scale="0.1 0.1 0.1"
+        rotation="0 90 -40"
+        diver-rotation-reader        
+      >
+      </a-entity>
+
+      <!-- Bubbles -->
+      <a-entity
+        id="bubbles"
+        gltf-model="#bubbles_model"
+        scale="0.01 0.01 0.01"
+        rotation="0 0 -40"
+        position="-2 2 0"
+        bubbles-rotation-reader 
+      >
+      </a-entity>
+
+    </a-scene>
+  </body>
+</html>
